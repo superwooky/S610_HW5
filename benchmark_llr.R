@@ -1,0 +1,5 @@
+library(testthat)
+context("Benchmark of linear regression function")
+#setwd("~/Box/git/S610_HW5")
+source("llr_functions.R")
+microbenchmark::microbenchmark(llr(z = z, x = x, y = y, omega = 2))
