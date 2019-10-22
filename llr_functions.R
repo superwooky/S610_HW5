@@ -36,7 +36,8 @@ compute_f_hat = function(z, x, y, omega) {
   ###################################changed part###################################################
   ##################################################################################################
   #f_hat = c(1, z) %*% solve(t(X) %*% Wz %*% X) %*% t(X) %*% Wz %*% y #the original code
-  f_hat = c(1, z) %*% solve(t(X) %*% apply(X,2, function(Xcol){Wz*Xcol})) %*% t(X) %*% apply(as.matrix(y),2, function(Xcol){Wz*Xcol})
+  #f_hat = c(1, z) %*% solve(t(X) %*% apply(X,2, function(Xcol){Wz*Xcol})) %*% t(X) %*% apply(as.matrix(y),2, function(Xcol){Wz*Xcol})
+  f_hat = c(1, z) %*% solve(t(X) %*% sweep(X,1,Wz,"*")) %*% t(X) %*% matrix(Wz * y) #the original code
   ##################################################################################################
   
   return(f_hat)
